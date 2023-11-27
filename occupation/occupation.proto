@@ -3,7 +3,7 @@ package kpmasterproto;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/djoonta/kpmasterproto.git/occupation";
+option go_package = "github.com/djoonta/kpmasterproto/occupation";
 
 message OccupationPagination {
   int32 current_page = 1;

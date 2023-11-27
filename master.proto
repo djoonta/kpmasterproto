@@ -3,7 +3,7 @@ package kpmasterproto;
 
 import "occupation/occupation.proto";
 
-option go_package = "github.com/djoonta/kpmasterproto.git";
+option go_package = "github.com/djoonta/kpmasterproto";
 
 service OccupationService {
   rpc FindID(OccupationFindIDRequest) returns (OccupationFindIDResponse) {}
