@@ -18,6 +18,11 @@ message OccupationPagination {
 enum StatusBlacklist {
   APPROVED = 0;
   BLACLIST = 1;
+  REVIEW = 2;
+}
+message OccupationWriteResponse {
+  bool success = 1;
+  string messsage = 2;
 }
 message OccupationInfo {
   string id = 1;
@@ -35,9 +40,36 @@ message OccupationFindAllResponse {
   repeated OccupationInfo occupations = 1;
   OccupationPagination paginations = 2;
 }
+
 message OccupationFindIDRequest {
   string id = 1;
 }
 message OccupationFindIDResponse {
   OccupationInfo occupation = 1;
+}
+
+message OccupationCreateRequest {
+  string name = 1;
+  string description = 2;
+  StatusBlacklist status_blacklist = 3;
+}
+message OccupationCreateResponse {
+  OccupationWriteResponse create_response = 1;
+}
+
+message OccupationDeleteRequest {
+  string id = 1;
+}
+message OccupationDeleteResponse {
+  OccupationWriteResponse delete_response = 1;
+}
+
+message OccupationUpdateRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  StatusBlacklist status_blacklist = 4;
+}
+message OccupationUpdateResponse {
+  OccupationWriteResponse delete_response = 1;
 }

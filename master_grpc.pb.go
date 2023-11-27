@@ -22,6 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	OccupationService_FindID_FullMethodName  = "/kpmasterproto.OccupationService/FindID"
 	OccupationService_FindAll_FullMethodName = "/kpmasterproto.OccupationService/FindAll"
+	OccupationService_Create_FullMethodName  = "/kpmasterproto.OccupationService/Create"
+	OccupationService_Delete_FullMethodName  = "/kpmasterproto.OccupationService/Delete"
+	OccupationService_Update_FullMethodName  = "/kpmasterproto.OccupationService/Update"
 )
 
 // OccupationServiceClient is the client API for OccupationService service.
@@ -30,6 +33,9 @@ const (
 type OccupationServiceClient interface {
 	FindID(ctx context.Context, in *occupation.OccupationFindIDRequest, opts ...grpc.CallOption) (*occupation.OccupationFindIDResponse, error)
 	FindAll(ctx context.Context, in *occupation.OccupationFindAllRequest, opts ...grpc.CallOption) (*occupation.OccupationFindAllResponse, error)
+	Create(ctx context.Context, in *occupation.OccupationCreateRequest, opts ...grpc.CallOption) (*occupation.OccupationCreateResponse, error)
+	Delete(ctx context.Context, in *occupation.OccupationDeleteRequest, opts ...grpc.CallOption) (*occupation.OccupationDeleteResponse, error)
+	Update(ctx context.Context, in *occupation.OccupationUpdateRequest, opts ...grpc.CallOption) (*occupation.OccupationUpdateResponse, error)
 }
 
 type occupationServiceClient struct {
@@ -58,12 +64,42 @@ func (c *occupationServiceClient) FindAll(ctx context.Context, in *occupation.Oc
 	return out, nil
 }
 
+func (c *occupationServiceClient) Create(ctx context.Context, in *occupation.OccupationCreateRequest, opts ...grpc.CallOption) (*occupation.OccupationCreateResponse, error) {
+	out := new(occupation.OccupationCreateResponse)
+	err := c.cc.Invoke(ctx, OccupationService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *occupationServiceClient) Delete(ctx context.Context, in *occupation.OccupationDeleteRequest, opts ...grpc.CallOption) (*occupation.OccupationDeleteResponse, error) {
+	out := new(occupation.OccupationDeleteResponse)
+	err := c.cc.Invoke(ctx, OccupationService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *occupationServiceClient) Update(ctx context.Context, in *occupation.OccupationUpdateRequest, opts ...grpc.CallOption) (*occupation.OccupationUpdateResponse, error) {
+	out := new(occupation.OccupationUpdateResponse)
+	err := c.cc.Invoke(ctx, OccupationService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OccupationServiceServer is the server API for OccupationService service.
 // All implementations must embed UnimplementedOccupationServiceServer
 // for forward compatibility
 type OccupationServiceServer interface {
 	FindID(context.Context, *occupation.OccupationFindIDRequest) (*occupation.OccupationFindIDResponse, error)
 	FindAll(context.Context, *occupation.OccupationFindAllRequest) (*occupation.OccupationFindAllResponse, error)
+	Create(context.Context, *occupation.OccupationCreateRequest) (*occupation.OccupationCreateResponse, error)
+	Delete(context.Context, *occupation.OccupationDeleteRequest) (*occupation.OccupationDeleteResponse, error)
+	Update(context.Context, *occupation.OccupationUpdateRequest) (*occupation.OccupationUpdateResponse, error)
 	mustEmbedUnimplementedOccupationServiceServer()
 }
 
@@ -76,6 +112,15 @@ func (UnimplementedOccupationServiceServer) FindID(context.Context, *occupation.
 }
 func (UnimplementedOccupationServiceServer) FindAll(context.Context, *occupation.OccupationFindAllRequest) (*occupation.OccupationFindAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAll not implemented")
+}
+func (UnimplementedOccupationServiceServer) Create(context.Context, *occupation.OccupationCreateRequest) (*occupation.OccupationCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedOccupationServiceServer) Delete(context.Context, *occupation.OccupationDeleteRequest) (*occupation.OccupationDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedOccupationServiceServer) Update(context.Context, *occupation.OccupationUpdateRequest) (*occupation.OccupationUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedOccupationServiceServer) mustEmbedUnimplementedOccupationServiceServer() {}
 
@@ -126,6 +171,60 @@ func _OccupationService_FindAll_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OccupationService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(occupation.OccupationCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OccupationServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OccupationService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OccupationServiceServer).Create(ctx, req.(*occupation.OccupationCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OccupationService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(occupation.OccupationDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OccupationServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OccupationService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OccupationServiceServer).Delete(ctx, req.(*occupation.OccupationDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OccupationService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(occupation.OccupationUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OccupationServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OccupationService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OccupationServiceServer).Update(ctx, req.(*occupation.OccupationUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OccupationService_ServiceDesc is the grpc.ServiceDesc for OccupationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -140,6 +239,18 @@ var OccupationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindAll",
 			Handler:    _OccupationService_FindAll_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _OccupationService_Create_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _OccupationService_Delete_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _OccupationService_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
