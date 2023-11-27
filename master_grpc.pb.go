@@ -4,11 +4,11 @@
 // - protoc             v4.25.1
 // source: master.proto
 
-package kpmasterproto_git
+package kpmasterproto
 
 import (
 	context "context"
-	occupation "github.com/djoonta/kpmasterproto.git/occupation"
+	occupation "github.com/djoonta/kpmasterproto/occupation"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
