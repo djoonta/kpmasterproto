@@ -1,0 +1,11 @@
+syntax = "proto3";
+package kpmasterproto;
+
+import "occupation/occupation.proto";
+
+option go_package = "github.com/djoonta/kpmasterproto.git";
+
+service OccupationService {
+  rpc FindID(OccupationFindIDRequest) returns (OccupationFindIDResponse) {}
+  rpc FindAll(OccupationFindAllRequest) returns (OccupationFindAllResponse) {}
+}
