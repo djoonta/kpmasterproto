@@ -1,0 +1,38 @@
+syntax = "proto3";
+package kpmasterproto;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/djoonta/kpmasterproto/installment";
+
+message InstallmentPagination {
+  int32 current_page = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+  int32 total_pages = 4;
+  int32 next_page = 5;
+  int32 prev_page = 6;
+  int32 total_page = 7;
+  int32 total_data = 8;
+}
+message InstallmentInfo {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  google.protobuf.Timestamp udpated_at = 4;
+}
+
+message InstallmentFindIDRequest {
+  string id = 1;
+}
+message InstallmentFindIDResponse {
+  InstallmentInfo installment = 1;
+}
+message InstallmentFindAllRequest {
+  string page = 1;
+  string limit = 2;
+}
+message InstallmentFindAllResponse {
+  repeated InstallmentInfo installments = 1;
+  InstallmentPagination paginations = 2;
+}

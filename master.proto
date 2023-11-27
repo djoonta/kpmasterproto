@@ -1,6 +1,7 @@
 syntax = "proto3";
 package kpmasterproto;
 
+import "installment/installment.proto";
 import "occupation/occupation.proto";
 
 option go_package = "github.com/djoonta/kpmasterproto";
@@ -11,4 +12,8 @@ service OccupationService {
   rpc Create(OccupationCreateRequest) returns (OccupationCreateResponse) {}
   rpc Delete(OccupationDeleteRequest) returns (OccupationDeleteResponse) {}
   rpc Update(OccupationUpdateRequest) returns (OccupationUpdateResponse) {}
+}
+
+service InstallmentService {
+  rpc FindAll(InstallmentFindAllRequest) returns (InstallmentFindIDResponse) {}
 }
