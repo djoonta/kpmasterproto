@@ -71,5 +71,5 @@ message OccupationUpdateRequest {
   StatusBlacklist status_blacklist = 4;
 }
 message OccupationUpdateResponse {
-  OccupationWriteResponse delete_response = 1;
+  OccupationWriteResponse update_response = 1;
 }
