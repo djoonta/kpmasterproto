@@ -1,5 +1,6 @@
 PROTOC_MAIN = ./master.proto
 PROTOC_OCCUPATION = ./occupation/occupation.proto
+PROTOC_INSTALLMENT = ./installment/installment.proto
 PROTOC = protoc
 PROTOC_FLAGS = -I . --go_out=. --go_opt=paths=source_relative \
 							 --go-grpc_out=. --go-grpc_opt=paths=source_relative
@@ -12,7 +13,10 @@ main:
 	@echo "create proto..."
 	$(PROTOC) $(PROTOC_FLAGS) $(PROTOC_MAIN)
 
+installment:
+	@echo "create proto..."
+	$(PROTOC) $(PROTOC_FLAGS) $(PROTOC_INSTALLMENT)
 
-all: occupation main
+all: installment occupation main
 
-.PHONY: occupation main all
+.PHONY: installment occupation main all

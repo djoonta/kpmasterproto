@@ -8,6 +8,7 @@ package kpmasterproto
 
 import (
 	context "context"
+	installment "github.com/djoonta/kpmasterproto/installment"
 	occupation "github.com/djoonta/kpmasterproto/occupation"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -251,6 +252,96 @@ var OccupationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _OccupationService_Update_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "master.proto",
+}
+
+const (
+	InstallmentService_FindAll_FullMethodName = "/kpmasterproto.InstallmentService/FindAll"
+)
+
+// InstallmentServiceClient is the client API for InstallmentService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type InstallmentServiceClient interface {
+	FindAll(ctx context.Context, in *installment.InstallmentFindAllRequest, opts ...grpc.CallOption) (*installment.InstallmentFindIDResponse, error)
+}
+
+type installmentServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewInstallmentServiceClient(cc grpc.ClientConnInterface) InstallmentServiceClient {
+	return &installmentServiceClient{cc}
+}
+
+func (c *installmentServiceClient) FindAll(ctx context.Context, in *installment.InstallmentFindAllRequest, opts ...grpc.CallOption) (*installment.InstallmentFindIDResponse, error) {
+	out := new(installment.InstallmentFindIDResponse)
+	err := c.cc.Invoke(ctx, InstallmentService_FindAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// InstallmentServiceServer is the server API for InstallmentService service.
+// All implementations must embed UnimplementedInstallmentServiceServer
+// for forward compatibility
+type InstallmentServiceServer interface {
+	FindAll(context.Context, *installment.InstallmentFindAllRequest) (*installment.InstallmentFindIDResponse, error)
+	mustEmbedUnimplementedInstallmentServiceServer()
+}
+
+// UnimplementedInstallmentServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedInstallmentServiceServer struct {
+}
+
+func (UnimplementedInstallmentServiceServer) FindAll(context.Context, *installment.InstallmentFindAllRequest) (*installment.InstallmentFindIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAll not implemented")
+}
+func (UnimplementedInstallmentServiceServer) mustEmbedUnimplementedInstallmentServiceServer() {}
+
+// UnsafeInstallmentServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to InstallmentServiceServer will
+// result in compilation errors.
+type UnsafeInstallmentServiceServer interface {
+	mustEmbedUnimplementedInstallmentServiceServer()
+}
+
+func RegisterInstallmentServiceServer(s grpc.ServiceRegistrar, srv InstallmentServiceServer) {
+	s.RegisterService(&InstallmentService_ServiceDesc, srv)
+}
+
+func _InstallmentService_FindAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(installment.InstallmentFindAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstallmentServiceServer).FindAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstallmentService_FindAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstallmentServiceServer).FindAll(ctx, req.(*installment.InstallmentFindAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// InstallmentService_ServiceDesc is the grpc.ServiceDesc for InstallmentService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var InstallmentService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "kpmasterproto.InstallmentService",
+	HandlerType: (*InstallmentServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "FindAll",
+			Handler:    _InstallmentService_FindAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
