@@ -260,13 +260,21 @@ var OccupationService_ServiceDesc = grpc.ServiceDesc{
 
 const (
 	InstallmentService_FindAll_FullMethodName = "/kpmasterproto.InstallmentService/FindAll"
+	InstallmentService_FindID_FullMethodName  = "/kpmasterproto.InstallmentService/FindID"
+	InstallmentService_Create_FullMethodName  = "/kpmasterproto.InstallmentService/Create"
+	InstallmentService_Delete_FullMethodName  = "/kpmasterproto.InstallmentService/Delete"
+	InstallmentService_Update_FullMethodName  = "/kpmasterproto.InstallmentService/Update"
 )
 
 // InstallmentServiceClient is the client API for InstallmentService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type InstallmentServiceClient interface {
-	FindAll(ctx context.Context, in *installment.InstallmentFindAllRequest, opts ...grpc.CallOption) (*installment.InstallmentFindIDResponse, error)
+	FindAll(ctx context.Context, in *installment.InstallmentFindAllRequest, opts ...grpc.CallOption) (*installment.InstallmentFindAllResponse, error)
+	FindID(ctx context.Context, in *installment.InstallmentFindIDRequest, opts ...grpc.CallOption) (*installment.InstallmentFindIDResponse, error)
+	Create(ctx context.Context, in *installment.InstallmentCreateRequest, opts ...grpc.CallOption) (*installment.InstallmentCreateResponse, error)
+	Delete(ctx context.Context, in *installment.InstallmentDeleteRequest, opts ...grpc.CallOption) (*installment.InstallmentDeleteResponse, error)
+	Update(ctx context.Context, in *installment.InstallmentUpdateRequest, opts ...grpc.CallOption) (*installment.InstallmentUpdateResponse, error)
 }
 
 type installmentServiceClient struct {
@@ -277,9 +285,45 @@ func NewInstallmentServiceClient(cc grpc.ClientConnInterface) InstallmentService
 	return &installmentServiceClient{cc}
 }
 
-func (c *installmentServiceClient) FindAll(ctx context.Context, in *installment.InstallmentFindAllRequest, opts ...grpc.CallOption) (*installment.InstallmentFindIDResponse, error) {
-	out := new(installment.InstallmentFindIDResponse)
+func (c *installmentServiceClient) FindAll(ctx context.Context, in *installment.InstallmentFindAllRequest, opts ...grpc.CallOption) (*installment.InstallmentFindAllResponse, error) {
+	out := new(installment.InstallmentFindAllResponse)
 	err := c.cc.Invoke(ctx, InstallmentService_FindAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *installmentServiceClient) FindID(ctx context.Context, in *installment.InstallmentFindIDRequest, opts ...grpc.CallOption) (*installment.InstallmentFindIDResponse, error) {
+	out := new(installment.InstallmentFindIDResponse)
+	err := c.cc.Invoke(ctx, InstallmentService_FindID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *installmentServiceClient) Create(ctx context.Context, in *installment.InstallmentCreateRequest, opts ...grpc.CallOption) (*installment.InstallmentCreateResponse, error) {
+	out := new(installment.InstallmentCreateResponse)
+	err := c.cc.Invoke(ctx, InstallmentService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *installmentServiceClient) Delete(ctx context.Context, in *installment.InstallmentDeleteRequest, opts ...grpc.CallOption) (*installment.InstallmentDeleteResponse, error) {
+	out := new(installment.InstallmentDeleteResponse)
+	err := c.cc.Invoke(ctx, InstallmentService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *installmentServiceClient) Update(ctx context.Context, in *installment.InstallmentUpdateRequest, opts ...grpc.CallOption) (*installment.InstallmentUpdateResponse, error) {
+	out := new(installment.InstallmentUpdateResponse)
+	err := c.cc.Invoke(ctx, InstallmentService_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -290,7 +334,11 @@ func (c *installmentServiceClient) FindAll(ctx context.Context, in *installment.
 // All implementations must embed UnimplementedInstallmentServiceServer
 // for forward compatibility
 type InstallmentServiceServer interface {
-	FindAll(context.Context, *installment.InstallmentFindAllRequest) (*installment.InstallmentFindIDResponse, error)
+	FindAll(context.Context, *installment.InstallmentFindAllRequest) (*installment.InstallmentFindAllResponse, error)
+	FindID(context.Context, *installment.InstallmentFindIDRequest) (*installment.InstallmentFindIDResponse, error)
+	Create(context.Context, *installment.InstallmentCreateRequest) (*installment.InstallmentCreateResponse, error)
+	Delete(context.Context, *installment.InstallmentDeleteRequest) (*installment.InstallmentDeleteResponse, error)
+	Update(context.Context, *installment.InstallmentUpdateRequest) (*installment.InstallmentUpdateResponse, error)
 	mustEmbedUnimplementedInstallmentServiceServer()
 }
 
@@ -298,8 +346,20 @@ type InstallmentServiceServer interface {
 type UnimplementedInstallmentServiceServer struct {
 }
 
-func (UnimplementedInstallmentServiceServer) FindAll(context.Context, *installment.InstallmentFindAllRequest) (*installment.InstallmentFindIDResponse, error) {
+func (UnimplementedInstallmentServiceServer) FindAll(context.Context, *installment.InstallmentFindAllRequest) (*installment.InstallmentFindAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAll not implemented")
+}
+func (UnimplementedInstallmentServiceServer) FindID(context.Context, *installment.InstallmentFindIDRequest) (*installment.InstallmentFindIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindID not implemented")
+}
+func (UnimplementedInstallmentServiceServer) Create(context.Context, *installment.InstallmentCreateRequest) (*installment.InstallmentCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedInstallmentServiceServer) Delete(context.Context, *installment.InstallmentDeleteRequest) (*installment.InstallmentDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedInstallmentServiceServer) Update(context.Context, *installment.InstallmentUpdateRequest) (*installment.InstallmentUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedInstallmentServiceServer) mustEmbedUnimplementedInstallmentServiceServer() {}
 
@@ -332,6 +392,78 @@ func _InstallmentService_FindAll_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _InstallmentService_FindID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(installment.InstallmentFindIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstallmentServiceServer).FindID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstallmentService_FindID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstallmentServiceServer).FindID(ctx, req.(*installment.InstallmentFindIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InstallmentService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(installment.InstallmentCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstallmentServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstallmentService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstallmentServiceServer).Create(ctx, req.(*installment.InstallmentCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InstallmentService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(installment.InstallmentDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstallmentServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstallmentService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstallmentServiceServer).Delete(ctx, req.(*installment.InstallmentDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InstallmentService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(installment.InstallmentUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstallmentServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstallmentService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstallmentServiceServer).Update(ctx, req.(*installment.InstallmentUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // InstallmentService_ServiceDesc is the grpc.ServiceDesc for InstallmentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -342,6 +474,22 @@ var InstallmentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindAll",
 			Handler:    _InstallmentService_FindAll_Handler,
+		},
+		{
+			MethodName: "FindID",
+			Handler:    _InstallmentService_FindID_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _InstallmentService_Create_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _InstallmentService_Delete_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _InstallmentService_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
