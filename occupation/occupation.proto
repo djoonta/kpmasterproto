@@ -17,7 +17,7 @@ message OccupationPagination {
 }
 enum StatusBlacklist {
   APPROVED = 0;
-  BLACLIST = 1;
+  BLACKLIST = 1;
   REVIEW = 2;
 }
 message OccupationWriteResponse {

@@ -15,5 +15,10 @@ service OccupationService {
 }
 
 service InstallmentService {
-  rpc FindAll(InstallmentFindAllRequest) returns (InstallmentFindIDResponse) {}
+  rpc FindAll(InstallmentFindAllRequest) returns (InstallmentFindAllResponse) {}
+  rpc FindID(InstallmentFindIDRequest) returns (InstallmentFindIDResponse) {}
+  rpc Create(InstallmentCreateRequest) returns (InstallmentCreateResponse) {}
+  rpc Delete(InstallmentDeleteRequest) returns (InstallmentDeleteResponse) {}
+  rpc Update(InstallmentUpdateRequest) returns (InstallmentUpdateResponse) {}
+ 
 }

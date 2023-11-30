@@ -15,11 +15,16 @@ message InstallmentPagination {
   int32 total_page = 7;
   int32 total_data = 8;
 }
+
+message InstallmentWriteResponse {
+  bool success = 1;
+  string messsage = 2;
+}
 message InstallmentInfo {
   string id = 1;
   string name = 2;
   string description = 3;
-  google.protobuf.Timestamp udpated_at = 4;
+  google.protobuf.Timestamp updated_at = 4;
 }
 
 message InstallmentFindIDRequest {
@@ -35,4 +40,29 @@ message InstallmentFindAllRequest {
 message InstallmentFindAllResponse {
   repeated InstallmentInfo installments = 1;
   InstallmentPagination paginations = 2;
+}
+
+
+message InstallmentCreateRequest {
+  string name = 1;
+  string description = 2;
+}
+message InstallmentCreateResponse {
+  InstallmentWriteResponse create_response = 1;
+}
+
+message InstallmentDeleteRequest {
+  string id = 1;
+}
+message InstallmentDeleteResponse {
+  InstallmentWriteResponse delete_response = 1;
+}
+
+message InstallmentUpdateRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+message InstallmentUpdateResponse {
+  InstallmentWriteResponse update_response = 1;
 }
