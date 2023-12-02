@@ -5,16 +5,9 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/djoonta/kpmasterproto/verification_status_reject";
 
-message VerificationStatusRejectPagination {
-  int32 current_page = 1;
-  int32 limit = 2;
-  int32 offset = 3;
-  int32 total_pages = 4;
-  int32 next_page = 5;
-  int32 prev_page = 6;
-  int32 total_page = 7;
-  int32 total_data = 8;
-}
+
+import "pagination/pagination.proto";
+
 
 message VerificationStatusRejectWriteResponse {
   bool success = 1;
@@ -39,7 +32,7 @@ message VerificationStatusRejectFindAllRequest {
 }
 message VerificationStatusRejectFindAllResponse {
   repeated VerificationStatusRejectInfo verification_status_rejects = 1;
-  VerificationStatusRejectPagination paginations = 2;
+  Pagination paginations = 2;
 }
 
 
