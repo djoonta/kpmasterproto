@@ -3,6 +3,9 @@ package kpmasterproto;
 
 import "installment/installment.proto";
 import "occupation/occupation.proto";
+import "encumbrance/encumbrance.proto";
+import "bank/bank.proto";
+
 
 option go_package = "github.com/djoonta/kpmasterproto";
 
@@ -20,5 +23,23 @@ service InstallmentService {
   rpc Create(InstallmentCreateRequest) returns (InstallmentCreateResponse) {}
   rpc Delete(InstallmentDeleteRequest) returns (InstallmentDeleteResponse) {}
   rpc Update(InstallmentUpdateRequest) returns (InstallmentUpdateResponse) {}
+ 
+}
+
+service EncumbranceService {
+  rpc FindAll(EncumbranceFindAllRequest) returns (EncumbranceFindAllResponse) {}
+  rpc FindID(EncumbranceFindIDRequest) returns (EncumbranceFindIDResponse) {}
+  rpc Create(EncumbranceCreateRequest) returns (EncumbranceCreateResponse) {}
+  rpc Delete(EncumbranceDeleteRequest) returns (EncumbranceDeleteResponse) {}
+  rpc Update(EncumbranceUpdateRequest) returns (EncumbranceUpdateResponse) {}
+ 
+}
+
+service BankService {
+  rpc FindAll(BankFindAllRequest) returns (BankFindAllResponse) {}
+  rpc FindID(BankFindIDRequest) returns (BankFindIDResponse) {}
+  rpc Create(BankCreateRequest) returns (BankCreateResponse) {}
+  rpc Delete(BankDeleteRequest) returns (BankDeleteResponse) {}
+  rpc Update(BankUpdateRequest) returns (BankUpdateResponse) {}
  
 }

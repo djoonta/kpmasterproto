@@ -1,0 +1,62 @@
+syntax = "proto3";
+package kpmasterproto;
+
+import "google/protobuf/timestamp.proto";
+import "pagination/pagination.proto";
+
+
+option go_package = "github.com/djoonta/kpmasterproto/encumbrance";
+
+
+
+message EncumbranceWriteResponse {
+  bool success = 1;
+  string messsage = 2;
+}
+message EncumbranceInfo {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string created_at =4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message EncumbranceFindIDRequest {
+  string id = 1;
+}
+message EncumbranceFindIDResponse {
+  EncumbranceInfo encumbrance = 1;
+}
+message EncumbranceFindAllRequest {
+  string page = 1;
+  string limit = 2;
+}
+message EncumbranceFindAllResponse {
+  repeated EncumbranceInfo encumbrances = 1;
+  PaginationMaster paginations = 2;
+}
+
+
+message EncumbranceCreateRequest {
+  string name = 1;
+  string description = 2;
+}
+message EncumbranceCreateResponse {
+  EncumbranceWriteResponse create_response = 1;
+}
+
+message EncumbranceDeleteRequest {
+  string id = 1;
+}
+message EncumbranceDeleteResponse {
+  EncumbranceWriteResponse delete_response = 1;
+}
+
+message EncumbranceUpdateRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+message EncumbranceUpdateResponse {
+  EncumbranceWriteResponse update_response = 1;
+}
