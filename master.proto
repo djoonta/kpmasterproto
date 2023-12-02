@@ -5,6 +5,7 @@ import "installment/installment.proto";
 import "occupation/occupation.proto";
 import "encumbrance/encumbrance.proto";
 import "bank/bank.proto";
+import "verification_status_reject/verification_status_reject.proto";
 
 
 option go_package = "github.com/djoonta/kpmasterproto";
@@ -40,6 +41,13 @@ service BankService {
   rpc FindID(BankFindIDRequest) returns (BankFindIDResponse) {}
   rpc Create(BankCreateRequest) returns (BankCreateResponse) {}
   rpc Delete(BankDeleteRequest) returns (BankDeleteResponse) {}
-  rpc Update(BankUpdateRequest) returns (BankUpdateResponse) {}
- 
+  rpc Update(BankUpdateRequest) returns (BankUpdateResponse) {} 
+}
+
+service VerificationStatusRejectService {
+  rpc FindAll(VerificationStatusRejectFindAllRequest) returns (VerificationStatusRejectFindAllResponse) {}
+  rpc FindID(VerificationStatusRejectFindIDRequest) returns (VerificationStatusRejectFindIDResponse) {}
+  rpc Create(VerificationStatusRejectCreateRequest) returns (VerificationStatusRejectCreateResponse) {}
+  rpc Delete(VerificationStatusRejectDeleteRequest) returns (VerificationStatusRejectDeleteResponse) {}
+  rpc Update(VerificationStatusRejectUpdateRequest) returns (VerificationStatusRejectUpdateResponse) {} 
 }
