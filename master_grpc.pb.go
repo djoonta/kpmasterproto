@@ -8,6 +8,8 @@ package kpmasterproto
 
 import (
 	context "context"
+	bank "github.com/djoonta/kpmasterproto/bank"
+	encumbrance "github.com/djoonta/kpmasterproto/encumbrance"
 	installment "github.com/djoonta/kpmasterproto/installment"
 	occupation "github.com/djoonta/kpmasterproto/occupation"
 	grpc "google.golang.org/grpc"
@@ -490,6 +492,482 @@ var InstallmentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _InstallmentService_Update_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "master.proto",
+}
+
+const (
+	EncumbranceService_FindAll_FullMethodName = "/kpmasterproto.EncumbranceService/FindAll"
+	EncumbranceService_FindID_FullMethodName  = "/kpmasterproto.EncumbranceService/FindID"
+	EncumbranceService_Create_FullMethodName  = "/kpmasterproto.EncumbranceService/Create"
+	EncumbranceService_Delete_FullMethodName  = "/kpmasterproto.EncumbranceService/Delete"
+	EncumbranceService_Update_FullMethodName  = "/kpmasterproto.EncumbranceService/Update"
+)
+
+// EncumbranceServiceClient is the client API for EncumbranceService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type EncumbranceServiceClient interface {
+	FindAll(ctx context.Context, in *encumbrance.EncumbranceFindAllRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceFindAllResponse, error)
+	FindID(ctx context.Context, in *encumbrance.EncumbranceFindIDRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceFindIDResponse, error)
+	Create(ctx context.Context, in *encumbrance.EncumbranceCreateRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceCreateResponse, error)
+	Delete(ctx context.Context, in *encumbrance.EncumbranceDeleteRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceDeleteResponse, error)
+	Update(ctx context.Context, in *encumbrance.EncumbranceUpdateRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceUpdateResponse, error)
+}
+
+type encumbranceServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEncumbranceServiceClient(cc grpc.ClientConnInterface) EncumbranceServiceClient {
+	return &encumbranceServiceClient{cc}
+}
+
+func (c *encumbranceServiceClient) FindAll(ctx context.Context, in *encumbrance.EncumbranceFindAllRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceFindAllResponse, error) {
+	out := new(encumbrance.EncumbranceFindAllResponse)
+	err := c.cc.Invoke(ctx, EncumbranceService_FindAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *encumbranceServiceClient) FindID(ctx context.Context, in *encumbrance.EncumbranceFindIDRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceFindIDResponse, error) {
+	out := new(encumbrance.EncumbranceFindIDResponse)
+	err := c.cc.Invoke(ctx, EncumbranceService_FindID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *encumbranceServiceClient) Create(ctx context.Context, in *encumbrance.EncumbranceCreateRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceCreateResponse, error) {
+	out := new(encumbrance.EncumbranceCreateResponse)
+	err := c.cc.Invoke(ctx, EncumbranceService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *encumbranceServiceClient) Delete(ctx context.Context, in *encumbrance.EncumbranceDeleteRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceDeleteResponse, error) {
+	out := new(encumbrance.EncumbranceDeleteResponse)
+	err := c.cc.Invoke(ctx, EncumbranceService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *encumbranceServiceClient) Update(ctx context.Context, in *encumbrance.EncumbranceUpdateRequest, opts ...grpc.CallOption) (*encumbrance.EncumbranceUpdateResponse, error) {
+	out := new(encumbrance.EncumbranceUpdateResponse)
+	err := c.cc.Invoke(ctx, EncumbranceService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EncumbranceServiceServer is the server API for EncumbranceService service.
+// All implementations must embed UnimplementedEncumbranceServiceServer
+// for forward compatibility
+type EncumbranceServiceServer interface {
+	FindAll(context.Context, *encumbrance.EncumbranceFindAllRequest) (*encumbrance.EncumbranceFindAllResponse, error)
+	FindID(context.Context, *encumbrance.EncumbranceFindIDRequest) (*encumbrance.EncumbranceFindIDResponse, error)
+	Create(context.Context, *encumbrance.EncumbranceCreateRequest) (*encumbrance.EncumbranceCreateResponse, error)
+	Delete(context.Context, *encumbrance.EncumbranceDeleteRequest) (*encumbrance.EncumbranceDeleteResponse, error)
+	Update(context.Context, *encumbrance.EncumbranceUpdateRequest) (*encumbrance.EncumbranceUpdateResponse, error)
+	mustEmbedUnimplementedEncumbranceServiceServer()
+}
+
+// UnimplementedEncumbranceServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedEncumbranceServiceServer struct {
+}
+
+func (UnimplementedEncumbranceServiceServer) FindAll(context.Context, *encumbrance.EncumbranceFindAllRequest) (*encumbrance.EncumbranceFindAllResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAll not implemented")
+}
+func (UnimplementedEncumbranceServiceServer) FindID(context.Context, *encumbrance.EncumbranceFindIDRequest) (*encumbrance.EncumbranceFindIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindID not implemented")
+}
+func (UnimplementedEncumbranceServiceServer) Create(context.Context, *encumbrance.EncumbranceCreateRequest) (*encumbrance.EncumbranceCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedEncumbranceServiceServer) Delete(context.Context, *encumbrance.EncumbranceDeleteRequest) (*encumbrance.EncumbranceDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedEncumbranceServiceServer) Update(context.Context, *encumbrance.EncumbranceUpdateRequest) (*encumbrance.EncumbranceUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedEncumbranceServiceServer) mustEmbedUnimplementedEncumbranceServiceServer() {}
+
+// UnsafeEncumbranceServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EncumbranceServiceServer will
+// result in compilation errors.
+type UnsafeEncumbranceServiceServer interface {
+	mustEmbedUnimplementedEncumbranceServiceServer()
+}
+
+func RegisterEncumbranceServiceServer(s grpc.ServiceRegistrar, srv EncumbranceServiceServer) {
+	s.RegisterService(&EncumbranceService_ServiceDesc, srv)
+}
+
+func _EncumbranceService_FindAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(encumbrance.EncumbranceFindAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EncumbranceServiceServer).FindAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EncumbranceService_FindAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EncumbranceServiceServer).FindAll(ctx, req.(*encumbrance.EncumbranceFindAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EncumbranceService_FindID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(encumbrance.EncumbranceFindIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EncumbranceServiceServer).FindID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EncumbranceService_FindID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EncumbranceServiceServer).FindID(ctx, req.(*encumbrance.EncumbranceFindIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EncumbranceService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(encumbrance.EncumbranceCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EncumbranceServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EncumbranceService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EncumbranceServiceServer).Create(ctx, req.(*encumbrance.EncumbranceCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EncumbranceService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(encumbrance.EncumbranceDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EncumbranceServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EncumbranceService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EncumbranceServiceServer).Delete(ctx, req.(*encumbrance.EncumbranceDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EncumbranceService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(encumbrance.EncumbranceUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EncumbranceServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EncumbranceService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EncumbranceServiceServer).Update(ctx, req.(*encumbrance.EncumbranceUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// EncumbranceService_ServiceDesc is the grpc.ServiceDesc for EncumbranceService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var EncumbranceService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "kpmasterproto.EncumbranceService",
+	HandlerType: (*EncumbranceServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "FindAll",
+			Handler:    _EncumbranceService_FindAll_Handler,
+		},
+		{
+			MethodName: "FindID",
+			Handler:    _EncumbranceService_FindID_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _EncumbranceService_Create_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _EncumbranceService_Delete_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _EncumbranceService_Update_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "master.proto",
+}
+
+const (
+	BankService_FindAll_FullMethodName = "/kpmasterproto.BankService/FindAll"
+	BankService_FindID_FullMethodName  = "/kpmasterproto.BankService/FindID"
+	BankService_Create_FullMethodName  = "/kpmasterproto.BankService/Create"
+	BankService_Delete_FullMethodName  = "/kpmasterproto.BankService/Delete"
+	BankService_Update_FullMethodName  = "/kpmasterproto.BankService/Update"
+)
+
+// BankServiceClient is the client API for BankService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type BankServiceClient interface {
+	FindAll(ctx context.Context, in *bank.BankFindAllRequest, opts ...grpc.CallOption) (*bank.BankFindAllResponse, error)
+	FindID(ctx context.Context, in *bank.BankFindIDRequest, opts ...grpc.CallOption) (*bank.BankFindIDResponse, error)
+	Create(ctx context.Context, in *bank.BankCreateRequest, opts ...grpc.CallOption) (*bank.BankCreateResponse, error)
+	Delete(ctx context.Context, in *bank.BankDeleteRequest, opts ...grpc.CallOption) (*bank.BankDeleteResponse, error)
+	Update(ctx context.Context, in *bank.BankUpdateRequest, opts ...grpc.CallOption) (*bank.BankUpdateResponse, error)
+}
+
+type bankServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewBankServiceClient(cc grpc.ClientConnInterface) BankServiceClient {
+	return &bankServiceClient{cc}
+}
+
+func (c *bankServiceClient) FindAll(ctx context.Context, in *bank.BankFindAllRequest, opts ...grpc.CallOption) (*bank.BankFindAllResponse, error) {
+	out := new(bank.BankFindAllResponse)
+	err := c.cc.Invoke(ctx, BankService_FindAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankServiceClient) FindID(ctx context.Context, in *bank.BankFindIDRequest, opts ...grpc.CallOption) (*bank.BankFindIDResponse, error) {
+	out := new(bank.BankFindIDResponse)
+	err := c.cc.Invoke(ctx, BankService_FindID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankServiceClient) Create(ctx context.Context, in *bank.BankCreateRequest, opts ...grpc.CallOption) (*bank.BankCreateResponse, error) {
+	out := new(bank.BankCreateResponse)
+	err := c.cc.Invoke(ctx, BankService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankServiceClient) Delete(ctx context.Context, in *bank.BankDeleteRequest, opts ...grpc.CallOption) (*bank.BankDeleteResponse, error) {
+	out := new(bank.BankDeleteResponse)
+	err := c.cc.Invoke(ctx, BankService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bankServiceClient) Update(ctx context.Context, in *bank.BankUpdateRequest, opts ...grpc.CallOption) (*bank.BankUpdateResponse, error) {
+	out := new(bank.BankUpdateResponse)
+	err := c.cc.Invoke(ctx, BankService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// BankServiceServer is the server API for BankService service.
+// All implementations must embed UnimplementedBankServiceServer
+// for forward compatibility
+type BankServiceServer interface {
+	FindAll(context.Context, *bank.BankFindAllRequest) (*bank.BankFindAllResponse, error)
+	FindID(context.Context, *bank.BankFindIDRequest) (*bank.BankFindIDResponse, error)
+	Create(context.Context, *bank.BankCreateRequest) (*bank.BankCreateResponse, error)
+	Delete(context.Context, *bank.BankDeleteRequest) (*bank.BankDeleteResponse, error)
+	Update(context.Context, *bank.BankUpdateRequest) (*bank.BankUpdateResponse, error)
+	mustEmbedUnimplementedBankServiceServer()
+}
+
+// UnimplementedBankServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedBankServiceServer struct {
+}
+
+func (UnimplementedBankServiceServer) FindAll(context.Context, *bank.BankFindAllRequest) (*bank.BankFindAllResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAll not implemented")
+}
+func (UnimplementedBankServiceServer) FindID(context.Context, *bank.BankFindIDRequest) (*bank.BankFindIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindID not implemented")
+}
+func (UnimplementedBankServiceServer) Create(context.Context, *bank.BankCreateRequest) (*bank.BankCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedBankServiceServer) Delete(context.Context, *bank.BankDeleteRequest) (*bank.BankDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedBankServiceServer) Update(context.Context, *bank.BankUpdateRequest) (*bank.BankUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedBankServiceServer) mustEmbedUnimplementedBankServiceServer() {}
+
+// UnsafeBankServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to BankServiceServer will
+// result in compilation errors.
+type UnsafeBankServiceServer interface {
+	mustEmbedUnimplementedBankServiceServer()
+}
+
+func RegisterBankServiceServer(s grpc.ServiceRegistrar, srv BankServiceServer) {
+	s.RegisterService(&BankService_ServiceDesc, srv)
+}
+
+func _BankService_FindAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bank.BankFindAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankServiceServer).FindAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankService_FindAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankServiceServer).FindAll(ctx, req.(*bank.BankFindAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankService_FindID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bank.BankFindIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankServiceServer).FindID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankService_FindID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankServiceServer).FindID(ctx, req.(*bank.BankFindIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bank.BankCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankServiceServer).Create(ctx, req.(*bank.BankCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bank.BankDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankServiceServer).Delete(ctx, req.(*bank.BankDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BankService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(bank.BankUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BankServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BankService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BankServiceServer).Update(ctx, req.(*bank.BankUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// BankService_ServiceDesc is the grpc.ServiceDesc for BankService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var BankService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "kpmasterproto.BankService",
+	HandlerType: (*BankServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "FindAll",
+			Handler:    _BankService_FindAll_Handler,
+		},
+		{
+			MethodName: "FindID",
+			Handler:    _BankService_FindID_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _BankService_Create_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _BankService_Delete_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _BankService_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

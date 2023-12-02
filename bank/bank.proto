@@ -1,0 +1,75 @@
+syntax = "proto3";
+package kpmasterproto;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/djoonta/kpmasterproto/bank";
+
+message BankPagination {
+  int32 current_page = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+  int32 total_pages = 4;
+  int32 next_page = 5;
+  int32 prev_page = 6;
+  int32 total_page = 7;
+  int32 total_data = 8;
+}
+
+message BankWriteResponse {
+  bool success = 1;
+  string messsage = 2;
+}
+message BankInfo {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string code =4;
+  string swift_code=5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message BankFindIDRequest {
+  string id = 1;
+}
+message BankFindIDResponse {
+  BankInfo bank = 1;
+}
+message BankFindAllRequest {
+  string page = 1;
+  string limit = 2;
+}
+message BankFindAllResponse {
+  repeated BankInfo banks = 1;
+  BankPagination paginations = 2;
+}
+
+
+message BankCreateRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string code =4;
+  string swift_code=5;
+}
+message BankCreateResponse {
+  BankWriteResponse create_response = 1;
+}
+
+message BankDeleteRequest {
+  string id = 1;
+}
+message BankDeleteResponse {
+  BankWriteResponse delete_response = 1;
+}
+
+message BankUpdateRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string code =4;
+  string swift_code=5;
+}
+message BankUpdateResponse {
+  BankWriteResponse update_response = 1;
+}
