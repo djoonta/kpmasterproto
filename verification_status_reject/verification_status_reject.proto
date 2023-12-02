@@ -32,7 +32,7 @@ message VerificationStatusRejectFindAllRequest {
 }
 message VerificationStatusRejectFindAllResponse {
   repeated VerificationStatusRejectInfo verification_status_rejects = 1;
-  Pagination paginations = 2;
+  PaginationMaster paginations = 2;
 }
 
 

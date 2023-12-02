@@ -33,7 +33,7 @@ message EncumbranceFindAllRequest {
 }
 message EncumbranceFindAllResponse {
   repeated EncumbranceInfo encumbrances = 1;
-  Pagination paginations = 2;
+  PaginationMaster paginations = 2;
 }
 
 

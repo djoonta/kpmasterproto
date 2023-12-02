@@ -5,7 +5,7 @@ package kpmasterproto;
 option go_package = "github.com/djoonta/kpmasterproto/pagination";
 
 
-message Pagination {
+message PaginationMaster {
     int32 current_page = 1;
     int32 limit = 2;
     int32 offset = 3;

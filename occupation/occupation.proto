@@ -31,7 +31,7 @@ message OccupationFindAllRequest {
 }
 message OccupationFindAllResponse {
   repeated OccupationInfo occupations = 1;
-  Pagination paginations = 2;
+  PaginationMaster paginations = 2;
 }
 
 message OccupationFindIDRequest {
