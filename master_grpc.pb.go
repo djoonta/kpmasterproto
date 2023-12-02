@@ -12,6 +12,7 @@ import (
 	encumbrance "github.com/djoonta/kpmasterproto/encumbrance"
 	installment "github.com/djoonta/kpmasterproto/installment"
 	occupation "github.com/djoonta/kpmasterproto/occupation"
+	verification_status_reject "github.com/djoonta/kpmasterproto/verification_status_reject"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -968,6 +969,245 @@ var BankService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _BankService_Update_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "master.proto",
+}
+
+const (
+	VerificationStatusRejectService_FindAll_FullMethodName = "/kpmasterproto.VerificationStatusRejectService/FindAll"
+	VerificationStatusRejectService_FindID_FullMethodName  = "/kpmasterproto.VerificationStatusRejectService/FindID"
+	VerificationStatusRejectService_Create_FullMethodName  = "/kpmasterproto.VerificationStatusRejectService/Create"
+	VerificationStatusRejectService_Delete_FullMethodName  = "/kpmasterproto.VerificationStatusRejectService/Delete"
+	VerificationStatusRejectService_Update_FullMethodName  = "/kpmasterproto.VerificationStatusRejectService/Update"
+)
+
+// VerificationStatusRejectServiceClient is the client API for VerificationStatusRejectService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type VerificationStatusRejectServiceClient interface {
+	FindAll(ctx context.Context, in *verification_status_reject.VerificationStatusRejectFindAllRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectFindAllResponse, error)
+	FindID(ctx context.Context, in *verification_status_reject.VerificationStatusRejectFindIDRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectFindIDResponse, error)
+	Create(ctx context.Context, in *verification_status_reject.VerificationStatusRejectCreateRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectCreateResponse, error)
+	Delete(ctx context.Context, in *verification_status_reject.VerificationStatusRejectDeleteRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectDeleteResponse, error)
+	Update(ctx context.Context, in *verification_status_reject.VerificationStatusRejectUpdateRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectUpdateResponse, error)
+}
+
+type verificationStatusRejectServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewVerificationStatusRejectServiceClient(cc grpc.ClientConnInterface) VerificationStatusRejectServiceClient {
+	return &verificationStatusRejectServiceClient{cc}
+}
+
+func (c *verificationStatusRejectServiceClient) FindAll(ctx context.Context, in *verification_status_reject.VerificationStatusRejectFindAllRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectFindAllResponse, error) {
+	out := new(verification_status_reject.VerificationStatusRejectFindAllResponse)
+	err := c.cc.Invoke(ctx, VerificationStatusRejectService_FindAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *verificationStatusRejectServiceClient) FindID(ctx context.Context, in *verification_status_reject.VerificationStatusRejectFindIDRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectFindIDResponse, error) {
+	out := new(verification_status_reject.VerificationStatusRejectFindIDResponse)
+	err := c.cc.Invoke(ctx, VerificationStatusRejectService_FindID_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *verificationStatusRejectServiceClient) Create(ctx context.Context, in *verification_status_reject.VerificationStatusRejectCreateRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectCreateResponse, error) {
+	out := new(verification_status_reject.VerificationStatusRejectCreateResponse)
+	err := c.cc.Invoke(ctx, VerificationStatusRejectService_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *verificationStatusRejectServiceClient) Delete(ctx context.Context, in *verification_status_reject.VerificationStatusRejectDeleteRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectDeleteResponse, error) {
+	out := new(verification_status_reject.VerificationStatusRejectDeleteResponse)
+	err := c.cc.Invoke(ctx, VerificationStatusRejectService_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *verificationStatusRejectServiceClient) Update(ctx context.Context, in *verification_status_reject.VerificationStatusRejectUpdateRequest, opts ...grpc.CallOption) (*verification_status_reject.VerificationStatusRejectUpdateResponse, error) {
+	out := new(verification_status_reject.VerificationStatusRejectUpdateResponse)
+	err := c.cc.Invoke(ctx, VerificationStatusRejectService_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// VerificationStatusRejectServiceServer is the server API for VerificationStatusRejectService service.
+// All implementations must embed UnimplementedVerificationStatusRejectServiceServer
+// for forward compatibility
+type VerificationStatusRejectServiceServer interface {
+	FindAll(context.Context, *verification_status_reject.VerificationStatusRejectFindAllRequest) (*verification_status_reject.VerificationStatusRejectFindAllResponse, error)
+	FindID(context.Context, *verification_status_reject.VerificationStatusRejectFindIDRequest) (*verification_status_reject.VerificationStatusRejectFindIDResponse, error)
+	Create(context.Context, *verification_status_reject.VerificationStatusRejectCreateRequest) (*verification_status_reject.VerificationStatusRejectCreateResponse, error)
+	Delete(context.Context, *verification_status_reject.VerificationStatusRejectDeleteRequest) (*verification_status_reject.VerificationStatusRejectDeleteResponse, error)
+	Update(context.Context, *verification_status_reject.VerificationStatusRejectUpdateRequest) (*verification_status_reject.VerificationStatusRejectUpdateResponse, error)
+	mustEmbedUnimplementedVerificationStatusRejectServiceServer()
+}
+
+// UnimplementedVerificationStatusRejectServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedVerificationStatusRejectServiceServer struct {
+}
+
+func (UnimplementedVerificationStatusRejectServiceServer) FindAll(context.Context, *verification_status_reject.VerificationStatusRejectFindAllRequest) (*verification_status_reject.VerificationStatusRejectFindAllResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAll not implemented")
+}
+func (UnimplementedVerificationStatusRejectServiceServer) FindID(context.Context, *verification_status_reject.VerificationStatusRejectFindIDRequest) (*verification_status_reject.VerificationStatusRejectFindIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindID not implemented")
+}
+func (UnimplementedVerificationStatusRejectServiceServer) Create(context.Context, *verification_status_reject.VerificationStatusRejectCreateRequest) (*verification_status_reject.VerificationStatusRejectCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedVerificationStatusRejectServiceServer) Delete(context.Context, *verification_status_reject.VerificationStatusRejectDeleteRequest) (*verification_status_reject.VerificationStatusRejectDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedVerificationStatusRejectServiceServer) Update(context.Context, *verification_status_reject.VerificationStatusRejectUpdateRequest) (*verification_status_reject.VerificationStatusRejectUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedVerificationStatusRejectServiceServer) mustEmbedUnimplementedVerificationStatusRejectServiceServer() {
+}
+
+// UnsafeVerificationStatusRejectServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to VerificationStatusRejectServiceServer will
+// result in compilation errors.
+type UnsafeVerificationStatusRejectServiceServer interface {
+	mustEmbedUnimplementedVerificationStatusRejectServiceServer()
+}
+
+func RegisterVerificationStatusRejectServiceServer(s grpc.ServiceRegistrar, srv VerificationStatusRejectServiceServer) {
+	s.RegisterService(&VerificationStatusRejectService_ServiceDesc, srv)
+}
+
+func _VerificationStatusRejectService_FindAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(verification_status_reject.VerificationStatusRejectFindAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VerificationStatusRejectServiceServer).FindAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VerificationStatusRejectService_FindAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VerificationStatusRejectServiceServer).FindAll(ctx, req.(*verification_status_reject.VerificationStatusRejectFindAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VerificationStatusRejectService_FindID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(verification_status_reject.VerificationStatusRejectFindIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VerificationStatusRejectServiceServer).FindID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VerificationStatusRejectService_FindID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VerificationStatusRejectServiceServer).FindID(ctx, req.(*verification_status_reject.VerificationStatusRejectFindIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VerificationStatusRejectService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(verification_status_reject.VerificationStatusRejectCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VerificationStatusRejectServiceServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VerificationStatusRejectService_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VerificationStatusRejectServiceServer).Create(ctx, req.(*verification_status_reject.VerificationStatusRejectCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VerificationStatusRejectService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(verification_status_reject.VerificationStatusRejectDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VerificationStatusRejectServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VerificationStatusRejectService_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VerificationStatusRejectServiceServer).Delete(ctx, req.(*verification_status_reject.VerificationStatusRejectDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VerificationStatusRejectService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(verification_status_reject.VerificationStatusRejectUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VerificationStatusRejectServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VerificationStatusRejectService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VerificationStatusRejectServiceServer).Update(ctx, req.(*verification_status_reject.VerificationStatusRejectUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// VerificationStatusRejectService_ServiceDesc is the grpc.ServiceDesc for VerificationStatusRejectService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var VerificationStatusRejectService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "kpmasterproto.VerificationStatusRejectService",
+	HandlerType: (*VerificationStatusRejectServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "FindAll",
+			Handler:    _VerificationStatusRejectService_FindAll_Handler,
+		},
+		{
+			MethodName: "FindID",
+			Handler:    _VerificationStatusRejectService_FindID_Handler,
+		},
+		{
+			MethodName: "Create",
+			Handler:    _VerificationStatusRejectService_Create_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _VerificationStatusRejectService_Delete_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _VerificationStatusRejectService_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

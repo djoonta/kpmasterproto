@@ -39,11 +39,10 @@ message BankFindAllResponse {
 
 
 message BankCreateRequest {
-  string id = 1;
-  string name = 2;
-  string description = 3;
-  string code =4;
-  string swift_code=5;
+  string name = 1;
+  string description = 2;
+  string code =3;
+  string swift_code=4;
 }
 message BankCreateResponse {
   BankWriteResponse create_response = 1;
