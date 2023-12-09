@@ -34,7 +34,7 @@ message BankFindAllRequest {
 }
 message BankFindAllResponse {
   repeated BankInfo banks = 1;
-  PaginationMaster paginations = 2;
+  PaginationMaster pagination = 2;
 }
 
 

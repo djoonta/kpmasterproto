@@ -31,7 +31,7 @@ message InstallmentFindAllRequest {
 }
 message InstallmentFindAllResponse {
   repeated InstallmentInfo installments = 1;
-  PaginationMaster paginations = 2;
+  PaginationMaster pagination = 2;
 }
 
 
